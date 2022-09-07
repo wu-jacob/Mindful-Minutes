@@ -1,7 +1,7 @@
 import threading #to run the gui and get_awi function at the same time
 import time
 import json
-import win32gui
+from win32 import win32gui
 from datetime import datetime
 from os.path import exists
 from tkinter import *
@@ -85,8 +85,9 @@ def get_awi():
                 day_list[name_list.index(active_window_name)][1] = time_running
  
         time.sleep(1)
- 
+
 #displays the gui
+
 def gui():
  
     global root
@@ -97,7 +98,7 @@ def gui():
     root.title(tk_title)
     root.overrideredirect(True) # turns off the title bar
     root.geometry('500x300+75+75') # set new geometry the + 75 + 75 is where it starts on the screen
-    root.iconbitmap("glpenguincircle.ico") # to show your own icon
+    root.iconbitmap("glpenguin.ico") # to show your own icon
     root.minimized = False # only to know if root is minimized
     root.maximized = False # only to know if root is maximized
  
@@ -295,7 +296,7 @@ def gui():
     root.bind("<FocusIn>",deminimize) # to view the window by clicking on the window icon on the taskbar
     root.after(10, lambda: set_appwindow(root)) # to see the icon on the task bar
  
-    root.iconbitmap("glpenguincircle.ico")
+    root.iconbitmap("glpenguin.ico")
  
     frame1 = Frame(window, bg="#121212", highlightthickness=0)
     frame2 = Frame(window, bg="#121212", highlightthickness=0)
@@ -337,7 +338,7 @@ def gui():
     clock()
  
     root.mainloop()
- 
+
 #sets the functions to run as separate threads
 t1 = threading.Thread(target=get_awi)
 t2 = threading.Thread(target=gui)
